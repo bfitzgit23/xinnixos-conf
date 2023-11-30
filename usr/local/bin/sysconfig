@@ -1,5 +1,5 @@
 #!/bin/bash
-# Written By Seeker for StormFish OS/Storm OS
+# Written By Seeker for XinnixOS OS
 # Forked and Inspired by Xerolinux-Tool
 
 id=$(echo $[($RANDOM % ($[10000 - 32000] + 1)) + 10000] )
@@ -7,22 +7,15 @@ echo "$id"
 
 
 yad --plug="$id" --tabnum=1 --columns=2 --form \
---field="<b>Step 1. Refresh Mirrors</b>":FBTN "xfce4-terminal -e 'sudo reflector --verbose -l 20 --sort rate --save /etc/pacman.d/mirrorlist'" \
---field="<b>Step 2. System Updates</b>":FBTN "xfce4-terminal  -e 'sudo pacman -Syyu --noconfirm'" \
---field="<b>Step 3. (Optional) Aur Updates</b>":FBTN "xfce4-terminal -e 'yay -Syyu --noconfirm'" \
---field="<b>Step 4. (Optional) Arch Keyring Updater</b>":FBTN "xfce4-terminal -e 'upkeyring'" \
---field="<b>Step 4a. (Optional) Renew Arch Keyring </b>":FBTN "xfce4-terminal -e 'upsystem'" \
---field="<b>Step 5. Install Teamviewer</b>":FBTN "xfce4-terminal -e 'tinstall'" \
---field="<b>Step 6. Install Lshw</b>":FBTN "xfce4-terminal -e  'sudo pacman -S lshw --noconfirm'" \
---field="<b>Step 7. Install i2c-tools for decode-dimms</b>":FBTN "xfce4-terminal -e  'sudo pacman -S i2c-tools --noconfirm'" \
---field="<b>Step 8. Install Nvidia drivers (dkms) after that, (Reboot)</b>":FBTN "xfce4-terminal -e  'sudo pacman -S nvidia-dkms lib32-nvidia-utils lib32-opencl-nvidia lib32-primus_vk lib32-libvdpau cuda-tools cuda opencl-nvidia primus_vk --noconfirm'" \
+--field="<b>Step 1. Ports Sync</b>":FBTN "xfce4-terminal -e 'sudo ports -u'" \
+--field="<b>Step 2. System Updates</b>":FBTN "xfce4-terminal  -e 'sudo prt-get update'" \
+--field="<b>Step 3. Install Nvidia drivers (dkms) after that, (Reboot)</b>":FBTN "xfce4-terminal -e  'sudo prt-get depinst nvidia nvidia-32 --noconfirm'" \
 --field="<b>Laptop Section:</b>":btn "" \
---field="<b>Step 9. Enable trackpad tap to click (Warning, automated REBOOT)</b>":FBTN "xfce4-terminal -e  'trackpad'" \
---field="<b>Step 10. Enable power-managment  (Warning, automated REBOOT)</b>":FBTN "xfce4-terminal -e  'pm'" \
+--field="<b>Step 4. Enable trackpad tap to click (Warning, automated REBOOT)</b>":FBTN "xfce4-terminal -e  'trackpad'" \
+--field="<b>Step 5. Enable power-managment  (Warning, automated REBOOT)</b>":FBTN "xfce4-terminal -e  'pm'" \
 --field="<b>Hardware and Memory Section:</b>":btn "" \
 --field="<b>Memory Reader (Works on most PC's )</b>":FBTN "xfce4-terminal -H -x 'decode-dimms'" \
 --field="<b>Memory Reader 2 (Works on some PC's also)</b>":FBTN "xfce4-terminal -H -e 'sudo dmidecode --type memory'" \
---field="<b>Lshw for System Info and Decode-dimms for Memreader1.txt to Txt</b>":FBTN "xfce4-terminal -e 'lshwinfo'" \
 --field="<b>Memory Reader 2 Memory Info to Memreader2.txt</b>":FBTN "xfce4-terminal -e 'memreader2'" \
 --field="<b>Blank your Screen/s select here </b>":FBTN "xfce4-terminal -e 'blankscreen'" \
 --field="<b>Block Detail Info</b>":fbtn "xfce4-terminal -H -x 'lsblk'" \
@@ -33,22 +26,14 @@ yad --plug="$id" --tabnum=1 --columns=2 --form \
 
 yad --plug="$id" --tabnum=2 --columns=2 --form \
 --field="<b>Game Related Utilities:</b>":btn "" \
---field="<b>Install Steam Native</b>":fbtn "xfce4-terminal -e 'sudo pacman -S --noconfirm steam-native-runtime gamemode'" \
---field="<b>Install Heroic Launcher</b>":fbtn "xfce4-terminal -e 'yay -S --noconfirm heroic-games-launcher-bin gamemode'" \
---field="<b>Install Lutris Launcher</b>":fbtn "xfce4-terminal -e 'sudo pacman -S --noconfirm lutris gamemode'" \
---field="<b>Install ProtonGE Updater</b>":fbtn "xfce4-terminal -e 'yay -S --noconfirm proton-community-updater'" \
---field="<b>Install Mangohud/Goverlay</b>":fbtn "xfce4-terminal -e 'yay -S --noconfirm mangohud goverlay-bin'" \
---field="<b>Install Bottles Launcher</b>":fbtn "xfce4-terminal -e 'yay -S --noconfirm bottles'" \
+--field="<b>Install Steam Native</b>":fbtn "xfce4-terminal -e 'sudo prt-get depinst steam'" \
+--field="<b>Install Wine-Staging</b>":fbtn "xfce4-terminal -e 'yay -S --noconfirm heroic-games-launcher-bin gamemode'" \
+--field="<b>Install Lutris Launcher</b>":fbtn "xfce4-terminal -e 'sudo prt-get depinst lutris'" \
 --field="<b>System Tools/Utilities:</b>":btn "" \
---field="<b>Install Warpinator</b>":FBTN "xfce4-terminal -e 'sudo pacman -S warpinator --noconfirm'" \
---field="<b>Install Gnome-Calculator</b>":FBTN "xfce4-terminal -e 'sudo pacman -S gnome-calculator --noconfirm'" \
---field="<b>Install Flameshot</b>":FBTN "xfce4-terminal -e 'sudo pacman -S flameshot --noconfirm'" \
---field="<b>Install Transmission-Gtk</b>":FBTN "xfce4-terminal -e 'sudo pacman -S transmission-gtk  --noconfirm'" \
---field="<b>Install Thunderbird</b>":FBTN "xfce4-terminal -e 'sudo pacman -S thunderbird  --noconfirm'" \
---field="<b>Install Xed (Alt) Text Editor</b>":FBTN "xfce4-terminal -e 'sudo pacman -S xed  --noconfirm'" \
---field="<b>Install Only Office</b>":FBTN "xfce4-terminal -e 'yay -S onlyoffice-bin  --noconfirm'" \
+--field="<b>Install Flameshot</b>":FBTN "xfce4-terminal -e 'sudo prt-get depinst flameshot'" \
+--field="<b>Install Transmission-Gtk</b>":FBTN "xfce4-terminal -e 'sudo prt-get depinst transmission'" \
+--field="<b>Install Thunderbird</b>":FBTN "xfce4-terminal -e 'sudo prt-get depinst thunderbird-bin'" \
 --field="<b>Install Media Stream Installer </b>":FBTN "xfce4-terminal -e 'minstaller'" \
---field="<b>Install Minimize to Tray (Auto Reboot)</b>":FBTN "xfce4-terminal -e 'trayinjector'" \
 --field="<b>Program Launchers:</b>":btn "" \
 --field="<b>launch Replace all File/Directory Menu</b>":FBTN "xfce4-terminal -e 'replaceall'" \
 --field="<b>launch Xfce4 Display Settings</b>":FBTN "xfce4-display-settings" \
@@ -63,47 +48,39 @@ yad --plug="$id" --tabnum=2 --columns=2 --form \
 
 
 yad --plug="$id" --tabnum=3 --columns=2 --form \
---field="<b>Step 1.Enable Cups/Printer</b>":fbtn "xfce4-terminal -e 'systemctl enable --now cups'" \
+--field="<b>Step 1.Enable Cups/Printer</b>":fbtn "xfce4-terminal -e 'sudo /etc/rc.d/cups start'" \
 --field="<b>Step 2. Cups/Printer Web Interface</b>":fbtn "xdg-open http://127.0.0.1:631" \
---field="<b>(Optional) Epson Drivers</b>":fbtn "xfce4-terminal -e 'epsoninstaller'" \
 --field="<b>HP Drivers (Preinstalled)</b>":btn "eom" &> /tmp/data3 &
 
 
 yad --plug="$id" --tabnum=4 --columns=2 --form \
---field="<b>Step 1. Install Discord</b>":fbtn "xfce4-terminal -e 'sudo pacman -S discord --noconfirm '" \
---field="<b>Step 2. Visit us and Join us in The StormOS/StormFishOS Discord Channel</b>":fbtn "xdg-open https://discord.gg/36JkjDVUP9" \
+--field="<b>Step 1. Install Discord</b>":fbtn "xfce4-terminal -e 'sudo prt-get depinst VencordDesktop '" \
+--field="<b>Step 2. Visit us and Join us in The StormOS Discord Channel</b>":fbtn "xdg-open https://discord.gg/36JkjDVUP9" \
 --field="<b>Distrowatch</b>":fbtn "xdg-open https://distrowatch.com" \
 --field="<b>Merchandise Store</b>":fbtn "xdg-open https://ebuzz-central.creator-spring.com/" \
 --field="<b>Gofund.me Page</b>":fbtn "xdg-open https://gofund.me/d954872d" \
 --field="<b>Patreon Page</b>":fbtn "xdg-open https://patreon.com/benfitzpatrick" \
---field="<b>Visit The StormOS Site (Soon to Change Hosts)</b>":fbtn "xdg-open https://storm-os.godaddysites.com" \
+--field="<b>Visit The StormOS Site (Soon to Change Hosts)</b>":fbtn "coming soon" \
 --field="<b>Visit The StormOS Sourceforge Site for Direct Downloads and Info on StormOS</b>":fbtn "xdg-open https://sourceforge.net/projects/hackman-linux/files/" \
---field="<b>Or Visit The StormFish OS Site</b>":fbtn "xdg-open https://sourceforge.net/projects/stormfish-os/" \
 --field="<b>StormOS ReadMe</b>":fbtn '/usr/local/bin/data/about' \
 --field="<b>Reserved</b>":btn "" \
 --field="Reserved:BTN" "eom" &> /tmp/data4 &
 
 
 yad --plug="$id" --tabnum=5 --columns=2 --form \
---field="<b>StormOS Arch Commands</b>":fbtn '/usr/local/bin/data/commands' \
---field="<b>Visit The Arch Wiki</b>":fbtn "xdg-open https://wiki.archlinux.org/" \
---field="<b>Visit The Arch Website</b>":fbtn "xdg-open https://archlinux.org/" \
---field="<b>Explanation of Arch Commands</b>":fbtn "xdg-open https://www.geeksforgeeks.org/pacman-command-in-arch-linux/#:~:text=Pacman%20is%20a%20package%20manager,a%20text%2Dbased%20package%20database." \
---field="<b>Visit 3rd Party Software for Arch AUR Website</b>":fbtn "xdg-open https://aur.archlinux.org/" \
---field="<b>Beginner Video Tutorial on Pacman</b>":fbtn "xdg-open https://www.youtube.com/watch?v=TQaHfQrwnXo" \
---field="<b>Novice/Advanced Video Tutorial on Pacman</b>":fbtn "xdg-open https://www.youtube.com/watch?v=-dEuXTMzRKs" \
+--field="<b>XinnixOS LFS Commands</b>":fbtn '/usr/local/bin/data/commands' \
+--field="<b>Visit The LFS Guide</b>":fbtn "xdg-open https://linuxfromscratch.org/~thomas/multilib" \
+--field="<b>Visit The LFS Website</b>":fbtn "xdg-open https://linuxfromscratch.org" \
 --field="<b>Reserved</b>:BTN" "eom" &> /tmp/data5 &
 
-yad --notebook --key="$id" --center --tab-pos=bottom  --width=480 --height=175 --tab="<b>(1).Maintenance/Updates/Support</b>" --tab="<b>(2).Game/Utilities/Scripts</b>" --tab="<b>(3).Cups/Printer Drivers</b>"  --tab="<b>(4).About Us/Donations/Merchandise</b>"  --tab="<b>(5).Arch University</b>" --image=/usr/share/icons/scalable/apps/stormos.png \
---title="Storm OS Utilities Program v4.0.0.1" \
+yad --notebook --key="$id" --center --tab-pos=bottom  --width=480 --height=175 --tab="<b>(1).Maintenance/Updates/Support</b>" --tab="<b>(2).Game/Utilities/Scripts</b>" --tab="<b>(3).Cups/Printer Drivers</b>"  --tab="<b>(4).About Us/Donations/Merchandise</b>"  --tab="<b>(5).XinnixOS University</b>" --image=/usr/share/pixmaps/linux-from-scratch-gnu-xfce-tux.png.png \
+--title="XinnixOS Utilities Program v1.0.0" \
 --text="<b>Greetings $USER Use this Utility tool to Maintain and Upgrade your Storm OS</b>" \
 --justify=center \
 --button="Logout":"xfce4-session-logout" \
 --button="System Info by Lshw":"xfce4-terminal -H -x sudo lshw -short" \
---button="System Resources via Top":"xfce4-terminal -H -x top" \
+--button="System Resources via Top":"xfce4-terminal -H -x htop" \
 --button="Update Utility Program":"xfce4-terminal -e 'utilityup'" \
---button="Add/Remove Software":"pamac-manager %U" \
---button="Add Utility Tool to Tray":"alltray -H sysconfig" \
 
 
 
