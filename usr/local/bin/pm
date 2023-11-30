@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo prt-get depinst tlp tlpui;
+sleep 2
+reboot

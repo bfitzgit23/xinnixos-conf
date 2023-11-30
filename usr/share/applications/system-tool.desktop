@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=XinnixOS System Tool
+GenericName=XinnixOS System Tool
+X-GNOME-FullName=XinnixOS System Tool
+Comment=Tweak XinnixOS with ease
+Exec=/usr/local/bin/sysconfig
+Icon=/usr/share/icons/scalable/apps/xinnixos.png
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;Utility;Settings;Security;X-GNOME-Settings-Panel;X-GNOME-SystemSettings;X-Unity-Settings-Panel;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
+Keywords=tweak;tool;
+StartupNotify=true

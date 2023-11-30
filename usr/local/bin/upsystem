@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo prt-get update

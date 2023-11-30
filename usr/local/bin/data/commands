@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+## Enhanced by Seeker
+## created by Ben/XinnixOS
+
+yad --title "Welcome To XinnixOS LFS Commands" --image='/usr/share/pixmaps/linux-from-scratch-gnu-xfce-tux.png'  \
+	--about \
+	--pname='XinnixOS LFS Commands' \
+	--image='LFS' \
+	--comments="Commands: sudo ports -u or synchronizes the repository and sudo prt-get update updates system packages and Sudo prt-get depinst package name installs package or if you want to remove a package you can type Sudo prt-get remove package name, To do a search for a package you can type sudo prt-get search package name" \
+	

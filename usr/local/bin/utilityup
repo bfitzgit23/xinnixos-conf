@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo ports -u; sudo prt-get depinst -fr xinnixos-conf; killall yad; setsid sysconfig &>/dev/null &
+
+./sysconfig
+
